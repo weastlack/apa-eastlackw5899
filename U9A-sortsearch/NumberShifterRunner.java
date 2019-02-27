@@ -13,6 +13,12 @@ public class NumberShifterRunner
 	public static void main( String args[] ) throws IOException
 	{
 		//add test cases
+		NumberShifter test = new NumberShifter();
+	
+		int[] array = test.NumberShifter.makeLucky7Array();
+		System.out.println(Arrays.toString(array));
+		test.NumberShifter.shiftEm(array);
+		System.out.println(Arrays.toString(array));
 	}
 }
 
