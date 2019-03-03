@@ -19,6 +19,9 @@ public class WordSortTwoRunner
 		{
 			String sentence = file.nextLine();
 			//instantiate a new WordSort
+		        WordSortTwo wst = new WordSortTwo("WHAM BAM WHAM I LIKE PIES");
+			wst.sort();
+			System.out.println(wst);
 		}
 	}
 }
