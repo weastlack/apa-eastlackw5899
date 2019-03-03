@@ -13,21 +13,30 @@ public class NumberShifter
 	public static int[] makeLucky7Array( int size)
 	{
 		int[] array = new int[size];
-		for (int i = 0; i < size; i++) {
-			array[i] = UtilRandomNumbers.getRandomInteger(0, 10);
+		for (int i = 0; i < array.length; i++) {
+			array[i] = (int) (Math.random() * 10 + 1);
 		}
 		return array;
 	}
 	public static void shiftEm(int[] array)
 	{
-        	for (int i = 0; i < array.length; i++) {
-			int j = i;
-			while (j < array.length && array[j] != 7) j++;
-			if (j != i && j < array.length) {
-				int k = array[j];
-				array[j] = array[i];
-				array[i] = k;
+        	int[] shiftedRay = new int[array.length];
+		int index = 0;
+		for (int i : array) {
+			if (i == 7) {
+				shiftedRay[index] = (i);
+				index++;
 			}
+		}
+		
+		for (int i : array) {
+			if (i != 7) {
+				shiftedRay[index] = (i);
+				index++;
+			}
+		}
+		for (int i = 0; i < shiftedRay.length; i++) {
+			System.out.print(shiftedRay[i] + " ");
 		}
 	}
 }
