@@ -36,7 +36,7 @@ public class Shape
       //    ()
       
       window.drawArc(xPos, yPos, width, height, 0, -180);
-      window.drawRect(xPos + 20, yPos - (yPos/10), width /4, height /4);
+      window.drawRect(xPos + 40, yPos - (yPos/10), width /4, height /4);
       window.drawRect(xPos + 40, yPos - (yPos/10), width/4, height/4);
    }
 
