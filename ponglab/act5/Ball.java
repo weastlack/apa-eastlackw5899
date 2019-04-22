@@ -23,8 +23,8 @@ public class Ball extends Block
   public Ball(Color col)
   {
     super(200,200,col);
-    xSpeed = 3;
-    ySpeed = 1;
+    setXSpeed(3);
+    setYSpeed(1);
   }	
 
   public Ball(int x, int y)
@@ -40,19 +40,26 @@ public class Ball extends Block
     xSpeed = 3;
     ySpeed = 1;
   }
-  
+    
   public Ball(int x, int y, int w, int h, Color col)
   {
     super(x,y,w,h,col);  
-    xSpeed = 3;
-    ySpeed = 1;
+    setXSpeed(3);
+    setYSpeed(1);
+  }
+  
+  public Ball(int x, int y, int w, int h, int xSpd, int ySpd)
+  {
+    super(x,y,w,h);
+    setXSpeed(xSpd);
+    setYSpeed(ySpd);
   }
   
   public Ball(int x, int y, int w, int h, Color col, int xSpd, int ySpd)
   {
     super(x,y,w,h,col);	  
-    xSpeed = xSpd;  
-    ySpeed = ySpd;
+    setXSpeed(xSpd);  
+    setYSpeed(ySpd);
   }	
 
 	   
@@ -72,37 +79,42 @@ public class Ball extends Block
   public void moveAndDraw(Graphics window)
   {
     //draw a white ball at old ball location
-    draw(window,Color.white);
-
+    draw(window, Color.WHITE);
+    
     setX(getX() + xSpeed);
 
     //setY
     setY(getY() + ySpeed);
     
     //draw the ball at its new location
-    draw(window, super.getColor());
+    draw(window);
+  }
+  
+  public void resetDraw(Graphics window, int xPos, int yPos) 
+  {
+    window.setColor(Color.WHITE);
+    window.fillOval(getX(), getY(), getWidth(), getHeight());
+    setPos(xPos, yPos);
+    window.setColor(getColor());
+    window.fillOval(getX(), getY(), getWidth(), getHeight());
   }
    
   public boolean equals(Object obj)
   {
     Ball s = (Ball) obj;
 
-    if( s.getXSpeed() != xSpeed)
+    if( s.getXSpeed() == xSpeed)
     {
-      return false;
+      if(s.getYSpeed() == ySpeed)
+      {
+        if(super.equals(obj))
+        {
+          return true;
+        }
+      }
     }
-		
-    else if(s.getYSpeed() != ySpeed)
-    {
-      return false;
-    }
-		
-    else
-    {
-      return true;
-    }
-  }   
-
+    return false;
+  }
   //add the get methods
 
   public int getXSpeed()

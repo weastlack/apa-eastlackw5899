@@ -9,7 +9,7 @@ CLASSES = \
 	Locatable.java \
 	Ball.java \
 	BlinkyBall.java \
-	SpeedyBall.java \
+	SpeedUpBall.java \
 	Paddle.java \
 	Pong.java \
 	TheGame.java

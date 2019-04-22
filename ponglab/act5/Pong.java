@@ -42,10 +42,10 @@ public class Pong extends Canvas implements KeyListener, Runnable
     lt = new Wall(0,0,3,597,Color.BLACK);
     rt = new Wall(800,0,3,597,Color.BLACK);
     bot = new Wall(0,597,800,3, Color.BLACK);    
-    ball = new Ball(Color.BLACK);
+    ball = new Ball(400,300,10,10,Color.BLACK,3,1);
         
-    leftPaddle = new Paddle(20, 15, 10, 25, Color.RED, 5);	  
-    rightPaddle = new Paddle(780, 300, 10, 25, Color.BLUE, 5);
+    leftPaddle = new Paddle(20, 15, 10, 60, Color.RED, 5);	  
+    rightPaddle = new Paddle(780, 300, 10, 60, Color.BLUE, 5);
     
     score = new Score(width,height,scoreSize);    
     keys = new boolean[4];
@@ -94,11 +94,13 @@ public class Pong extends Canvas implements KeyListener, Runnable
     if(ball.collidedLeft(lt) && ball.movingLeft())
     {
       score.scoreRight();
+      ball.resetDraw(graphToBack,400,300);
     }
 
     if (ball.collidedRight(rt) && ball.movingRight())
     {
       score.scoreLeft();
+      ball.resetDraw(graphToBack,400,300);
     }
 
     ball.setXSpeed(-ball.getXSpeed());
@@ -117,6 +119,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
     if(ball.collidedLeft(leftPaddle) && ball.movingLeft())
     {
       ball.setXSpeed(-ball.getXSpeed());	
+      
     }
 		
     //see if the ball hits the right paddle
