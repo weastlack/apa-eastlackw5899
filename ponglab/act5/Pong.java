@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 
 public class Pong extends Canvas implements KeyListener, Runnable
 {
-  private Ball ball;
+  private BlinkyBall ball;
   private Paddle leftPaddle;
   private Paddle rightPaddle;
   private boolean[] keys;
@@ -42,7 +42,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
     lt = new Wall(0,0,3,597,Color.BLACK);
     rt = new Wall(800,0,3,597,Color.BLACK);
     bot = new Wall(0,597,800,3, Color.BLACK);    
-    ball = new Ball(400,300,10,10,Color.BLACK,3,1);
+    ball = new BlinkyBall(200,200,10,10,Color.BLACK,3,1);
         
     leftPaddle = new Paddle(20, 15, 10, 60, Color.RED, 5);	  
     rightPaddle = new Paddle(780, 300, 10, 60, Color.BLUE, 5);
@@ -95,12 +95,14 @@ public class Pong extends Canvas implements KeyListener, Runnable
     {
       score.scoreRight();
       ball.resetDraw(graphToBack,400,300);
+      ball = new BlinkyBall(200,200,10,10, Color.BLACK, 3, 1);
     }
 
     if (ball.collidedRight(rt) && ball.movingRight())
     {
       score.scoreLeft();
       ball.resetDraw(graphToBack,400,300);
+      ball = new BlinkyBall(200,200,10,10, Color.BLACK, 3, 1);
     }
 
     ball.setXSpeed(-ball.getXSpeed());
@@ -111,6 +113,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
     if(ball.collidedTop(top) || ball.collidedBottom(bot)) 
     {
       ball.setYSpeed(-ball.getYSpeed());
+      ball = new BlinkyBall(200,200,10,10, Color.BLACK, 3, 1);
     }
 
 
@@ -119,7 +122,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
     if(ball.collidedLeft(leftPaddle) && ball.movingLeft())
     {
       ball.setXSpeed(-ball.getXSpeed());	
-      
+      ball = new BlinkyBall(200,200,10,10, Color.BLACK, 3, 1);
     }
 		
     //see if the ball hits the right paddle
@@ -127,6 +130,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
     if(ball.collidedRight(rightPaddle) && ball.movingRight())
     {  
       ball.setXSpeed(-ball.getXSpeed());
+      ball = new BlinkyBall(200,200,10,10, Color.BLACK, 3, 1);
     }
 		
 
