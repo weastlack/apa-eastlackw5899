@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 
 public class Pong extends Canvas implements KeyListener, Runnable
 {
-  private BlinkyBall ball;
+  private SpeedUpBall ball;
   private Paddle leftPaddle;
   private Paddle rightPaddle;
   private boolean[] keys;
@@ -24,6 +24,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
   private int width;
   private int height;
   private static final int scoreSize = 100;
+  private int gameBounds;
 
   private Score score;
   private Wall top;
@@ -37,12 +38,14 @@ public class Pong extends Canvas implements KeyListener, Runnable
     
     width = w;
     height = h;
+    gameBounds = height - scoreSize;    
 
-    top = new Wall(0,0,800,3,Color.BLACK);
-    lt = new Wall(0,0,3,597,Color.BLACK);
-    rt = new Wall(800,0,3,597,Color.BLACK);
-    bot = new Wall(0,597,800,3, Color.BLACK);    
-    ball = new BlinkyBall(200,200,10,10,Color.BLACK,3,1);
+    top = new Wall(0,0,800,10,Color.BLACK);
+    lt = new Wall(0,0,10,590,Color.BLACK);
+    rt = new Wall(800,0,10,590,Color.BLACK);
+    bot = new Wall(0,590,800,10, Color.BLACK);
+    
+    ball = new SpeedUpBall(400,300);
         
     leftPaddle = new Paddle(20, 15, 10, 60, Color.RED, 5);	  
     rightPaddle = new Paddle(780, 300, 10, 60, Color.BLUE, 5);
@@ -91,46 +94,42 @@ public class Pong extends Canvas implements KeyListener, Runnable
     
     //see if ball hits left wall or right wall
 
-    if(ball.collidedLeft(lt) && ball.movingLeft())
+    if(ball.didCollideLeft(lt) && ball.movingLeft())
     {
       score.scoreRight();
       ball.resetDraw(graphToBack,400,300);
-      ball = new BlinkyBall(200,200,10,10, Color.BLACK, 3, 1);
     }
 
-    if (ball.collidedRight(rt) && ball.movingRight())
+    if (ball.didCollideRight(rt) && ball.movingRight())
     {
       score.scoreLeft();
       ball.resetDraw(graphToBack,400,300);
-      ball = new BlinkyBall(200,200,10,10, Color.BLACK, 3, 1);
     }
-
-    ball.setXSpeed(-ball.getXSpeed());
     
 		
     //see if the ball hits the top or bottom wall 
     
-    if(ball.collidedTop(top) || ball.collidedBottom(bot)) 
+    if(ball.didCollideTop(top) || ball.didCollideBottom(bot)) 
     {
-      ball.setYSpeed(-ball.getYSpeed());
-      ball = new BlinkyBall(200,200,10,10, Color.BLACK, 3, 1);
+      ball.setYSpeed(ball.getYSpeed());
+      ball.changeDirectionY();
     }
 
 
     //see if the ball hits the left paddle
     
-    if(ball.collidedLeft(leftPaddle) && ball.movingLeft())
+    if(ball.didCollideLeft(leftPaddle) && ball.movingLeft())
     {
-      ball.setXSpeed(-ball.getXSpeed());	
-      ball = new BlinkyBall(200,200,10,10, Color.BLACK, 3, 1);
+      ball.setXSpeed(ball.getXSpeed());	
+      ball.changeDirectionX();
     }
 		
     //see if the ball hits the right paddle
 		
-    if(ball.collidedRight(rightPaddle) && ball.movingRight())
+    if(ball.didCollideRight(rightPaddle) && ball.movingRight())
     {  
-      ball.setXSpeed(-ball.getXSpeed());
-      ball = new BlinkyBall(200,200,10,10, Color.BLACK, 3, 1);
+      ball.setXSpeed(ball.getXSpeed());
+      ball.changeDirectionX();
     }
 		
 
@@ -138,7 +137,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 
     if (keys[0])
     {
-      if(!leftPaddle.collidedTop(top))
+      if(!leftPaddle.didCollideTop(top))
       {
         leftPaddle.moveUpAndDraw(graphToBack);
       }
@@ -146,7 +145,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 
     if (keys[1])
     {
-      if(!leftPaddle.collidedBottom(bot))
+      if(!leftPaddle.didCollideBottom(bot))
       {  
         leftPaddle.moveDownAndDraw(graphToBack);
       }    
@@ -154,7 +153,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 
     if (keys[2])
     {
-      if(!rightPaddle.collidedTop(top))
+      if(!rightPaddle.didCollideTop(top))
       {
         rightPaddle.moveUpAndDraw(graphToBack);
       }
@@ -162,7 +161,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 
     if (keys[3])
     {
-      if(!rightPaddle.collidedBottom(bot))
+      if(!rightPaddle.didCollideBottom(bot))
       {
         rightPaddle.moveDownAndDraw(graphToBack);
       }

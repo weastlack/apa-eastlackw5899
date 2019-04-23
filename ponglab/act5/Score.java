@@ -33,8 +33,7 @@ public class Score
   
   public void draw(Graphics window) {
     window.setColor(Color.WHITE);
-    window.fillRect(0, height, width, height);
-    
+    window.fillRect(0, height, width, height);    
     window.setColor(Color.RED);
     window.drawString("Player 1: " + leftScore, xOffset/4, height + vertOffset);
     window.setColor(Color.BLUE);

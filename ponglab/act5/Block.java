@@ -16,8 +16,8 @@ public class Block implements Locatable
 
   public Block()
   {
-    setX(10);
-    setY(10);
+    setX(0);
+    setY(0);
     setWidth(10);
     setHeight(10);
     setColor(Color.BLACK);
@@ -26,8 +26,8 @@ public class Block implements Locatable
   // add other Block constructors - x , y , width, height, color
 
   public Block(int x, int y) {
-    setX(10);
-    setY(10);
+    setX(x);
+    setY(y);
     setWidth(10);
     setHeight(10);
     setColor(Color.BLACK);
@@ -61,8 +61,8 @@ public class Block implements Locatable
   //add the other set methods
 
   public void setPos(int x, int y) {
-    setX(x);
-    setY(y);
+    xPos = x;
+    yPos = y;
   }
 
   public void setX(int x) {
@@ -103,22 +103,8 @@ public class Block implements Locatable
    
   public boolean equals(Object obj)
   {
-    Block s = (Block) obj; 
-    if(xPos == s.xPos)
-    {
-      if(yPos == s.yPos)
-      {
-        if(width == s.width)
-        {
-          if(height == s.height)
-          {
-            if(color == s.color)
-              return true;
-          }
-        }
-      }
-    }
-    return false;
+    Block b = (Block)obj;
+    return (xPos == b.getX()) && (yPos == b.getY()) && (width == b.getWidth()) && (height == b.getHeight()) && (color == b.getColor());
   }   
 
   //add the other get methods
@@ -148,25 +134,25 @@ public class Block implements Locatable
     return color;
   }
   
-  public int getXLeft() 
+  public int getXL() 
   {
     return xPos;
   }
   
-  public int getXRight() 
+  public int getXR() 
   {
     return xPos + width;
   }
   
-  public int getYTop() 
+  public int getYT() 
   {
     return yPos;
   }
   
-  public int getYBottom() 
+  public int getYB() 
   {
     return yPos + height;
-  }    
+  }  
 
   //add a toString() method  - x , y , width, height, color
 	

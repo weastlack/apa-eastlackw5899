@@ -2,9 +2,9 @@ import java.awt.Color;
 
 public class Wall extends Block {
 
-  public Wall(int xPos, int yPos, int width, int height, Color color) 
+  public Wall(int x, int y, int w, int h, Color col) 
   {
-    super(xPos, yPos, width, height, color);
+    super(x, y, w, h, col);
   }
 	
 }

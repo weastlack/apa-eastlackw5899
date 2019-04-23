@@ -30,27 +30,15 @@ public class Paddle extends Block
     speed = s;
   }
 
-  public Paddle(int x, int y, int width, int height)
+  public Paddle(int x, int y, int w, int h, int s)
   {
-    super(x,y,width,height);	  
-    speed = 5;
-  }
-
-  public Paddle(int x, int y, int width, int height, Color col)
-  {
-    super(x,y,width,height,col);	  
-    speed = 5;
-  }
-
-  public Paddle(int x, int y, int width, int height, int s)
-  {
-    super(x, y, width, height);	  
+    super(x, y, w, h);	  
     speed = s;
   }
   
-  public Paddle(int x, int y, int width, int height, Color col, int s)
+  public Paddle(int x, int y, int w, int h, Color col, int s)
   {
-    super(x, y, width, height, col);	  
+    super(x, y, w, h, col);	  
     speed = s;
   }
 
@@ -61,17 +49,28 @@ public class Paddle extends Block
 
   public void moveUpAndDraw(Graphics window)
   {
-    //draw a white box at old paddle location
-    draw(window, Color.white);
-    setY(getY() - speed);
-    draw(window, super.getColor());
+    //draw a white paddle at old paddle location
+    window.setColor(Color.WHITE);
+    window.fillRect(getX(), getY(), getWidth(), getHeight());
+    
+    setY(getY()-speed);
+
+    //draw the paddle at its new location
+    window.setColor(getColor());
+    window.fillRect(getX(), getY(), getWidth(), getHeight());
   }
 
   public void moveDownAndDraw(Graphics window)
   {
-    draw(window, Color.WHITE);
-    setY(getY() + speed);
-    draw(window, super.getColor());
+    //draw a white paddle at old paddle location
+    window.setColor(Color.WHITE);
+    window.fillRect(getX(), getY(), getWidth(), getHeight());
+    
+    setY(getY()+speed);
+
+    //draw the paddle at its new location
+    window.setColor(getColor());
+    window.fillRect(getX(), getY(), getWidth(), getHeight());
   }
 
   //add get methods
@@ -79,23 +78,32 @@ public class Paddle extends Block
   {
     return speed;
   } 
-  
 
-  public boolean collidedTop(Block s) 
+  public boolean didCollideLeft(Block b)
   {
-    return getYTop() == s.getYBottom();
+    return false;
+  }  
+
+  public boolean didCollideRight(Block b)
+  {
+    return false;
+  }
+
+  public boolean didCollideTop(Block b) 
+  {
+    return getYT() == b.getYB();
   }
   
-  public boolean collidedBottom(Block s) 
+  public boolean didCollideBottom(Block b) 
   {
-    return getYBottom() == s.getYTop();
+    return getYB() == b.getYT();
   }
   
   //add a toString() method
   
   public String toString()
   {
-    return super.toString() + "\n" + "speed: " + speed;
+    return super.toString() + " " + speed;
   }
   
 }
