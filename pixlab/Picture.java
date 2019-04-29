@@ -324,30 +324,36 @@ public class Picture extends SimplePicture
     int b = y + h;
 
     Pixel[][] pixels = this.getPixels2D();
-
+    
     for (int row = x; row <= a; row++)
     {
-      for (int col = y; col <= b; col++)
+      if (row > 0 && row < pixels.length)
       {
-        topPixel = pixels[row-1][col];
-        botPixel = pixels[row][col-1];
-	rightPixel = pixels[row][col+1];
-	topRightPixel = pixels[row-1][col+1];
-	botRightPixel = pixels[row+1][col+1];
-        leftPixel = pixels[row][col-1];
-        topLeftPixel = pixels[row-1][col-1];
-        botLeftPixel = pixels[row+1][col-1];
-        centerPixel = pixels[row][col]; 
+        for (int col = y; col <= b; col++)
+        {
+          if (col > 0 && col < pixels[0].length)
+          {
+            topPixel = pixels[row-1][col];
+            botPixel = pixels[row][col-1];
+	    rightPixel = pixels[row][col+1];
+	    topRightPixel = pixels[row-1][col+1];
+	    botRightPixel = pixels[row+1][col+1];
+            leftPixel = pixels[row][col-1];
+            topLeftPixel = pixels[row-1][col-1];
+            botLeftPixel = pixels[row+1][col-1];
+            centerPixel = pixels[row][col]; 
        
-        int redAvg = ((topLeftPixel.getRed() + topPixel.getRed() + topRightPixel.getRed() + leftPixel.getRed() + rightPixel.getRed() + botLeftPixel.getRed() + botPixel.getRed() + botRightPixel.getRed())/8);
+            int redAvg = ((topLeftPixel.getRed() + topPixel.getRed() + topRightPixel.getRed() + leftPixel.getRed() + rightPixel.getRed() + botLeftPixel.getRed() + botPixel.getRed() + botRightPixel.getRed())/8);
       
-        int greenAvg = ((topLeftPixel.getGreen() + topPixel.getGreen() + topRightPixel.getGreen() + leftPixel.getGreen() + rightPixel.getGreen() + botLeftPixel.getGreen() + botPixel.getGreen() + botRightPixel.getGreen())/8);
+            int greenAvg = ((topLeftPixel.getGreen() + topPixel.getGreen() + topRightPixel.getGreen() + leftPixel.getGreen() + rightPixel.getGreen() + botLeftPixel.getGreen() + botPixel.getGreen() + botRightPixel.getGreen())/8);
         
-	int blueAvg = ((topLeftPixel.getBlue() + topPixel.getBlue() + topRightPixel.getBlue() + leftPixel.getBlue() + rightPixel.getBlue() + botLeftPixel.getBlue() + botPixel.getBlue() + botRightPixel.getBlue())/8);	
+	    int blueAvg = ((topLeftPixel.getBlue() + topPixel.getBlue() + topRightPixel.getBlue() + leftPixel.getBlue() + rightPixel.getBlue() + botLeftPixel.getBlue() + botPixel.getBlue() + botRightPixel.getBlue())/8);	
 
-        centerPixel.setRed(redAvg);
-        centerPixel.setGreen(greenAvg);
-        centerPixel.setBlue(blueAvg);
+            centerPixel.setRed(redAvg);
+            centerPixel.setGreen(greenAvg);
+            centerPixel.setBlue(blueAvg);
+	  }
+        }
       }
     }
   }
