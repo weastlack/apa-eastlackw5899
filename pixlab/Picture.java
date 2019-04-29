@@ -127,6 +127,7 @@ public class Picture extends SimplePicture
   }
   
   /** Method to change a picture to grayscale */
+  
   public void grayscale()
   {
     Pixel[][] pixels = this.getPixels2D();
@@ -141,7 +142,7 @@ public class Picture extends SimplePicture
       }
     }
   }
-  
+    
   /** Method to fix the underwater picture */
   public void fixUnderwater()
   {
@@ -305,6 +306,52 @@ public class Picture extends SimplePicture
       }
     }
   }
+  
+  public void blur(int x, int y, int w, int h)
+  {
+    Pixel topPixel = null;
+    Pixel botPixel = null;
+    Pixel rightPixel = null;
+    Pixel topRightPixel = null;
+    Pixel botRightPixel = null;
+    Pixel leftPixel = null;
+    Pixel topLeftPixel = null;
+    Pixel botLeftPixel = null;
+    
+    Pixel centerPixel = null;    
+
+    int a = x + w;
+    int b = y + h;
+
+    Pixel[][] pixels = this.getPixels2D();
+
+    for (int row = x; row <= a; row++)
+    {
+      for (int col = y; col <= b; col++)
+      {
+        topPixel = pixels[row-1][col];
+        botPixel = pixels[row][col-1];
+	rightPixel = pixels[row][col+1];
+	topRightPixel = pixels[row-1][col+1];
+	botRightPixel = pixels[row+1][col+1];
+        leftPixel = pixels[row][col-1];
+        topLeftPixel = pixels[row-1][col-1];
+        botLeftPixel = pixels[row+1][col-1];
+        centerPixel = pixels[row][col]; 
+       
+        int redAvg = ((topLeftPixel.getRed() + topPixel.getRed() + topRightPixel.getRed() + leftPixel.getRed() + rightPixel.getRed() + botLeftPixel.getRed() + botPixel.getRed() + botRightPixel.getRed())/8);
+      
+        int greenAvg = ((topLeftPixel.getGreen() + topPixel.getGreen() + topRightPixel.getGreen() + leftPixel.getGreen() + rightPixel.getGreen() + botLeftPixel.getGreen() + botPixel.getGreen() + botRightPixel.getGreen())/8);
+        
+	int blueAvg = ((topLeftPixel.getBlue() + topPixel.getBlue() + topRightPixel.getBlue() + leftPixel.getBlue() + rightPixel.getBlue() + botLeftPixel.getBlue() + botPixel.getBlue() + botRightPixel.getBlue())/8);	
+
+        centerPixel.setRed(redAvg);
+        centerPixel.setGreen(greenAvg);
+        centerPixel.setBlue(blueAvg);
+      }
+    }
+  }
+    
 
   /** Mirror just part of a picture of a temple */
   public void mirrorTemple()

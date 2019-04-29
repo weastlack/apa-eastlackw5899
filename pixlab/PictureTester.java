@@ -127,7 +127,16 @@ public class PictureTester
     seagull.mirrorRectangle(50, 50, 100, 100, true);
     seagull.explore();
   }  
-  
+
+  public static void testBlur(int x, int y, int w, int h, int n)
+  {
+    Picture redMoto = new Picture("redMotorcycle.jpg");
+    for (int i = 0; i < n; i++){
+      redMoto.blur(x,y,w,h);
+    }
+    redMoto.explore();
+  }
+
   /** Method to test the collage method */
   public static void testCollage()
   {
@@ -138,7 +147,6 @@ public class PictureTester
   
   public static void testmyCollage()
   {
-
   }
 
   public static void testCopy()
@@ -187,7 +195,7 @@ public class PictureTester
     //testMirrorGull();
     //testMirrorRectangle();
     //testMirrorDiagonal();
-    testCollage();
+    //testCollage();
     //testCopy();
     //testEdgeDetection();
     //testEdgeDetection2();
@@ -197,5 +205,6 @@ public class PictureTester
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
+    testBlur(180,160,25,25,10);
   }
 }
