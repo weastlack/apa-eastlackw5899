@@ -19,7 +19,7 @@ public class Ammo extends MovingThing
 
   public Ammo(int x, int y)
   {
-    this(x, y, 0);
+    this(x, y, 5);
   }
 
   public Ammo(int x, int y, int s)
@@ -35,7 +35,7 @@ public class Ammo extends MovingThing
 
   public int getSpeed()
   {
-    return this.speed;
+    return 5;
   }
 
   public void draw( Graphics window )
