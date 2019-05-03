@@ -1,3 +1,4 @@
+
 /**
  * This class contains class (static) methods
  * that will help you test the Picture class 
@@ -39,7 +40,13 @@ public class PictureTester
   {
     Picture beach = new Picture("beach.jpg");
     beach.explore();
-    beach.grayscale();
+    beach.grayscaleAverage();
+
+    beach.explore();
+    beach.grayscaleLightness();
+
+    beach.explore();
+    beach.grayscaleLuminosity();
     beach.explore();
   }
   
@@ -145,14 +152,17 @@ public class PictureTester
     canvas.explore();
   }
   
-  public static void testmyCollage()
+  public static void testMyCollage()
   {
+    Picture canvas = new Picture("640x480.jpg");
+    canvas.myCollage();
+    canvas.explore();
   }
 
   public static void testCopy()
   {
     Picture canvas = new Picture("640x480.jpg");
-    canvas.createCollage();
+    canvas.myCollage();
     canvas.explore();
   }
   
@@ -196,6 +206,7 @@ public class PictureTester
     //testMirrorRectangle();
     //testMirrorDiagonal();
     //testCollage();
+    testMyCollage();
     //testCopy();
     //testEdgeDetection();
     //testEdgeDetection2();
@@ -205,6 +216,6 @@ public class PictureTester
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
-    testBlur(180,160,25,25,10);
+    //testBlur(180,160,25,25,10);
   }
 }

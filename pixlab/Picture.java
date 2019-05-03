@@ -127,7 +127,7 @@ public class Picture extends SimplePicture
   }
   
   /** Method to change a picture to grayscale */
-  
+  /*
   public void grayscale()
   {
     Pixel[][] pixels = this.getPixels2D();
@@ -139,6 +139,42 @@ public class Picture extends SimplePicture
         pixelObj.setRed(average);
         pixelObj.setGreen(average);
         pixelObj.setBlue(average);
+      }
+    }
+  }
+  */
+  public void grayscaleAverage()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setGrayAverage();
+      }
+    }
+  }
+
+  public void grayscaleLightness()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setGrayLightness();
+      }
+    }
+  }
+
+  public void grayscaleLuminosity()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setGrayLuminosity();
       }
     }
   }
@@ -324,14 +360,14 @@ public class Picture extends SimplePicture
     int b = y + h;
 
     Pixel[][] pixels = this.getPixels2D();
-    
+       
     for (int row = x; row <= a; row++)
     {
-      if (row > 0 && row < pixels.length)
+      if (row > 0 && row < pixels.length - 1)
       {
         for (int col = y; col <= b; col++)
         {
-          if (col > 0 && col < pixels[0].length)
+          if (col > 0 && col < pixels[0].length - 1)
           {
             topPixel = pixels[row-1][col];
             botPixel = pixels[row][col-1];
@@ -513,8 +549,10 @@ public class Picture extends SimplePicture
   
   public void myCollage()
   {
-      Picture flower1 = new Picture("flower1.jpg");
-      this.copy2(flower1,10,20, 0, 100);
+      Picture usc = new Picture("trojanlogo.jpg");
+      this.copy2(usc,0,240,0,320);
+      this.copy2(usc,240,480,320,640);
+      this.mirrorVertical();
       this.write("mycollage.jpg");
   }
   

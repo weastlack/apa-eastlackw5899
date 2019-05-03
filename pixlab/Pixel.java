@@ -296,6 +296,29 @@ public class Pixel
     updatePicture(getAlpha(), getRed(), getGreen(), blue);
   } 
   
+  public void setGrayAverage()
+  {
+    int average = (getRed() + getGreen() + getBlue())/3;
+    updatePicture(getAlpha(), average, average, average);
+  }
+
+  public void setGrayLightness()
+  {
+    int max1 = Math.max(getRed(), getGreen());
+    int max = Math.max(max1, getBlue());
+    int min1 = Math.min(getRed(), getGreen());
+    int min = Math.min(min1, getBlue());
+
+    int average = (max + min)/2;
+    updatePicture(getAlpha(), average, average, average);
+  }
+
+  public void setGrayLuminosity()
+  {
+    int average = (int) (0.20*getRed() + 0.70*getGreen() + 0.08*getBlue());
+    updatePicture(getAlpha(), average, average, average);
+  }
+
    /**
    * Method to set the alpha (transparency) to a new alpha value
    * @param value the new value to use
