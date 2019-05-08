@@ -4,6 +4,7 @@
 
 import javax.swing.JFrame;
 import java.awt.Component;
+import java.lang.*;
 
 public class StarFighter extends JFrame
 {
