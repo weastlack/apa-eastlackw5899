@@ -1,4 +1,5 @@
 
+
 //A+ Computer Science  -  www.apluscompsci.com
 //Name -
 //Date -
@@ -121,9 +122,13 @@ public class BlackJack
           }
         }
         if(dealerTotal>playerTotal && dealerTotal <= 21){
+	  System.out.println("\nCards in Dealer Hand :: " + dealer.toString() );
+          System.out.println("Dealer Hand Value :: " + dealerTotal );
+          System.out.println("Dealer Hand Size :: " + dealer.getHandSize() + "\n");
           System.out.println("Dealer wins. Player loses.");
           //add one to dealer wins
           dealer.setWinCount(dealer.getWinCount() + 1); //new
+
         }
         if(playerTotal < 21 && dealerTotal < 21 && playerTotal == dealerTotal)
         {
