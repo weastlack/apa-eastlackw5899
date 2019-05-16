@@ -83,6 +83,10 @@ public class BlackJack
           //add one to dealer wins
           dealer.setWinCount(dealer.getWinCount() + 1);
           //display player loss
+          System.out.println("\nDEALER ");
+          System.out.println("Cards in Hand :: " + dealer.toString() );
+          System.out.println("Hand Value :: " + dealerTotal );
+          System.out.println("Hand Size :: " + dealer.getHandSize() + "\n");
           System.out.println("\nPlayer busted. Dealer wins.\n");
           break;   //break from while loop
         }
@@ -120,6 +124,14 @@ public class BlackJack
           System.out.println("Dealer wins. Player loses.");
           //add one to dealer wins
           dealer.setWinCount(dealer.getWinCount() + 1); //new
+        }
+        if(playerTotal < 21 && dealerTotal < 21 && playerTotal == dealerTotal)
+        {
+          System.out.println("\nIt's a push.\n");
+        }
+        if(playerTotal == 21 && dealerTotal != 21)
+        {
+          System.out.println("\nPlayer wins! Hand Total of 21!\n");
         }
         //ask for another game
         System.out.println("Do you want to play another round? (Y/N) ");
