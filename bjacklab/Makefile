@@ -5,21 +5,18 @@ JC = javac
 	$(JC) $(JFLAGS) $*.java
 
 CLASSES = \
-	AbstractPlayer.java\
-	BlackJack.java\
-	BlackJackCard.java\
-	Card.java\
-	CardTestOne.java\
-	Dealer.java\
-	DealerTestOne.java\
-	Deck.java\
-	DeckTestOne.java\
-	Player.java\	
-	PlayerTestOne.java\	
+	AbstractPlayer.java \
+	BlackJack.java \
+	BlackJackCard.java \
+	Card.java \
+	CardTestOne.java \
+	Dealer.java \
+	DealerTestOne.java \
+	Deck.java \
+	DeckTestOne.java \
+	Player.java \	
+	PlayerTestOne.java \	
 	Playerable.java
-
-
-
 
 
 default: classes

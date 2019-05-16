@@ -48,7 +48,7 @@ public class Dealer extends AbstractPlayer
 
   public boolean hit() 
   {
-    return super.getHandValue() < 17;
+    return super.getHandValue() < 15;
   }
 
 }
