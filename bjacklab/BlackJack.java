@@ -68,7 +68,14 @@ public class BlackJack
 
       System.out.println("Do you want to hit? (Y/N) ");
       hit = keyboard.next().charAt(0);
-    
+      
+      if (playerTotal == 21 && dealerTotal != 21)
+        {
+          System.out.println("Blackjack! Player Wins.\n");
+          break;
+        }
+ 
+          
       while(hit == 'y' || hit == 'Y'){
 
         //add a card to players hand and display his updated hand
@@ -91,6 +98,12 @@ public class BlackJack
           System.out.println("\nPlayer busted. Dealer wins.\n");
           break;   //break from while loop
         }
+        
+        if (playerTotal == 21)
+	{
+	  System.out.println("Blackjack!");
+          break;
+	}
         else{
           //enter code to check if player wants to hit again
           System.out.println("Do you want to hit? (Y/N) ");
@@ -108,12 +121,12 @@ public class BlackJack
       else {
         //after player decides not to hit anymore and has not busted
         while(dealerTotal<playerTotal){
-          System.out.println("Dealer hits.");
+          System.out.println("\nDealer hits.");
           dealer.addCardToHand(dealer.deal());
           dealerTotal = dealer.getHandValue();
-          System.out.println("\nCards in Dealer Hand :: " + dealer.toString() );
-          System.out.println("Dealer Hand Value :: " + dealerTotal );
-          System.out.println("Dealer Hand Size :: " + dealer.getHandSize() + "\n" );
+          //System.out.println("\nCards in Dealer Hand :: " + dealer.toString() );
+          //System.out.println("Dealer Hand Value :: " + dealerTotal );
+          //System.out.println("Dealer Hand Size :: " + dealer.getHandSize() + "\n" );
           if(dealerTotal>21){
             System.out.println("\nDealer busts. Player Wins.\n");
             //add one to player wins
@@ -128,16 +141,43 @@ public class BlackJack
           System.out.println("Dealer wins. Player loses.");
           //add one to dealer wins
           dealer.setWinCount(dealer.getWinCount() + 1); //new
+        }
 
-        }
-        if(playerTotal < 21 && dealerTotal < 21 && playerTotal == dealerTotal)
+        /*
+	if(playerTotal < 21 && dealerTotal < 21 && playerTotal == dealerTotal)
         {
-          System.out.println("\nIt's a push.\n");
+          System.out.println("\nIt's a push. Dealer wins.\n");
+	  dealer.setWinCount(dealer.getWinCount() + 1);
+          //break;
         }
-        if(playerTotal == 21 && dealerTotal != 21)
+        */
+
+        /*        
+        if (playerTotal == 21 && dealerTotal != 21)
         {
-          System.out.println("\nPlayer wins! Hand Total of 21!\n");
+          System.out.println("Blackjack!\n");
+          //break;
+	}
+        */
+
+        if (playerTotal == dealerTotal)
+        {
+	  /*
+	  dealer.setWinCount(dealer.getWinCount() + 1);
+          System.out.println("\nCards in Dealer Hand :: " + dealer.toString() );
+          System.out.println("Dealer Hand Value :: " + dealerTotal );
+          System.out.println("Dealer Hand Size :: " + dealer.getHandSize() + "\n");
+          */
+	  System.out.println("\nIt's a push. Dealer wins.\n");
+          dealer.setWinCount(dealer.getWinCount() + 1);
+	  //break;
+	}        
+
+        if(dealerTotal == 21 && playerTotal != 21)
+        {
+          System.out.println("Blackjack!\n");
         }
+
         //ask for another game
         System.out.println("Do you want to play another round? (Y/N) ");
         anotherGame = keyboard.next().charAt(0);
