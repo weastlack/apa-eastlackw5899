@@ -7,7 +7,7 @@
 import static java.lang.System.*;
 import java.util.Scanner;
 
-public class BlackJack
+public class BlackJack1Player
 {
   //add in Player instance variable
   private Player player;
@@ -16,7 +16,7 @@ public class BlackJack
   private Dealer dealer;
 
   
-  public BlackJack()
+  public BlackJack1Player()
   {
     player = new Player();
     dealer = new Dealer();
@@ -187,7 +187,7 @@ public class BlackJack
         
   public static void main(String[] args)
   {
-    BlackJack game = new BlackJack();
+    BlackJack game = new BlackJack1Player();
     game.playGame();
   }
 }
