@@ -14,8 +14,8 @@ CLASSES = \
 	DealerTestOne.java \
 	Deck.java \
 	DeckTestOne.java \
-	Player.java \	
-	PlayerTestOne.java \	
+	Player.java \
+	PlayerTestOne.java \
 	Playerable.java
 
 
